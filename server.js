@@ -19,23 +19,14 @@ const PORT = process.env.PORT
 
 app.get('/weather', (request, response, next) => {
     try {
-        //slice(0,(query.indexOf(',')));
-        let dirtyReq = request.query; 
-        let Req = Object.keys(dirtyReq)[0];
-        let cleanReq = Req.slice(0,Req.indexOf(','));
-        //console.log (cleanReq);
-
-        let selectedCity = data.find(x => x.city_name === cleanReq);
-        console.log(selectedCity.data);
-
-        //let CleanResponse = new Forecast();
+        // let dirtyReq = request.query; 
+        // let Req = Object.keys(dirtyReq)[0];
+        // let cleanReq = Req.slice(0,Req.indexOf(','));
+        let city = request.query.cityName;
+        let selectedCity = data.find(x => x.city_name === city);
         const forecastArray = selectedCity.data.map(day => new Forecast(day.valid_date,day.weather.description))
-        //console.log(CleanResponse);
-        //console.log(selectedCity);
-       // console.log(selectedCity);
         response.send(forecastArray);
     } catch (error) {
-        // create a new instance of the Error object that lives in Express
         next(error);
     }
 })
