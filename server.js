@@ -1,38 +1,24 @@
 'use strict';
 
-console.log('our first server');
+//console.log('our first server');
 
 const { response } = require('express');
-
 const express = require('express');
 let data = require('./data/weather.json');
-
 require('dotenv').config();
-
 const cors = require('cors');
 const axios = require('axios');
 const app = express();
-
 app.use(cors());
 
 const PORT = process.env.PORT
 
 app.get('/weather', async (request, response, next) => {
     try {
-        // let dirtyReq = request.query; 
-        // let Req = Object.keys(dirtyReq)[0];
-        // let cleanReq = Req.slice(0,Req.indexOf(','));
-        // let city = request.query.cityName;
-        // let lon = request.query.lon;
-        // let lat = request.query.lat;
         let selectedCity = request.query.cityName
         let url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&city=${selectedCity}&days=3`
-        //console.log(url);
         let results = await axios.get(url);
-        console.log(results.data.data);
-        // let selectedCity = data.find(x => x.city_name === city);
         const forecastArray = results.data.data.map(day => new Forecast(day))
-        console.log(forecastArray);
         response.send(forecastArray);
     } catch (error) {
         next(error);
@@ -42,13 +28,8 @@ app.get('/movies', async (request, response, next) => {
     try {
         let selectedCity = request.query.cityName
         let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&language=en-US&query=${selectedCity}&page=1&include_adult=false`
-        console.log(url);
         let results = await axios.get(url);
-       // console.log(results.data.data);
-        // let selectedCity = data.find(x => x.city_name === city);
         const movieArray = results.data.results.map(data => new MovieArrayClass(data))
-        //console.log(forecastArray);
-        console.log(url);
         response.send(movieArray);
     } catch (error) {
         next(error);
