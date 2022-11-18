@@ -46,13 +46,13 @@ app.use((error, request, response, next) => {
 });
 
 class Forecast {
-    constructor (data){
+    constructor(data) {
         this.date = data.valid_date;
         this.description = data.weather.description;
     }
 }
 class MovieArrayClass {
-    constructor (data){
+    constructor(data) {
         this.title = data.original_title;
         this.poster = data.poster_path;
     }
