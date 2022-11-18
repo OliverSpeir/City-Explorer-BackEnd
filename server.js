@@ -11,7 +11,6 @@ app.use(cors());
 app.get('/weather',getWeather);
 app.get('/movies',getMovies);
 
-
 app.get('*', (request, response) => {
   response.send('That route does not exist');
 });

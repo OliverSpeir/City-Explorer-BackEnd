@@ -2,8 +2,6 @@
 const axios = require('axios');
 require('dotenv').config();
 
-
-
 function getWeather(request, response) {
   let selectedCity = request.query.cityName
   const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&city=${selectedCity}&days=3`
@@ -21,6 +19,8 @@ function getWeather(request, response) {
 class Forecast {
   constructor(data) {
     this.date = data.valid_date;
+    this.max = data.max_temp;
+    this.min = data.min_temp;
     this.description = data.weather.description;
   }
 }
