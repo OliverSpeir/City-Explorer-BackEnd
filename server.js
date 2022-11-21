@@ -17,7 +17,7 @@ function weatherHandler(request, response) {
     .then(summaries => response.send(summaries))
     .catch((error) => {
       console.error(error);
-      response.status(200).send('Sorry. Something went wrong!')
+      response.status(200).send('Sorry. Something went wrong!');
     });
 }
 function movieHandler(request, response) {
@@ -26,7 +26,7 @@ function movieHandler(request, response) {
     .then(summaries => response.send(summaries))
     .catch((error) => {
       console.error(error);
-      response.status(200).send('Sorry. Something went wrong!')
+      response.status(200).send('Sorry. Something went wrong!');
     });
 }
 app.listen(process.env.PORT, () => console.log(`Server up on ${process.env.PORT}`));
