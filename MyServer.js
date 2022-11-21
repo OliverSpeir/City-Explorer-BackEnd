@@ -3,7 +3,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const getWeather = require('./weather.js');
+const getWeather = require('./modules/weather.js');
 const getMovies = require ('./movies.js');
 const PORT = process.env.PORT;
 
